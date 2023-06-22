@@ -3,18 +3,17 @@ from .models import Product
 
 
 class ProductTestCase(TestCase):
-    def test_is_created(self):
-        p1 = Product.objects.create(
+    def setUp(self):
+        p = Product.objects.create(
             name='name 01',
             descripcion='desc 01',
             price=100.09
         )
-        p2 = Product.objects.create(
-            name='name 02',
-            descripcion='desc 02',
-            price=140.90
-        )
 
+    def test_is_created(self):
         count = Product.objects.all().count()
+        self.assertEqual(count, 1)
 
-        self.assertEqual(count, 2)
+    def test_name(self):
+        p = Product.objects.first()
+        self.assertEqual(p.name, 'name 01')
