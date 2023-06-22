@@ -32,3 +32,4 @@ class ProductViewTestCase(TestCase):
         response = self.client.get('/api/products/')
 
         self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), [{"id": 1, "name": "name 01", "description": "desc 01", "price": 100.09}])
